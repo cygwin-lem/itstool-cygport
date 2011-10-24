@@ -1,0 +1,5 @@
+DESCRIPTION="XML translation tool"
+HOMEPAGE="http://itstool.org/"
+SRC_URI="http://files.itstool.org/itstool/${P}.tar.bz2"
+
+DISTCLEANFILES="itstool itstool.1"
