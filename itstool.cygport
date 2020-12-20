@@ -1,5 +1,7 @@
+inherit python3
+
 NAME="itstool"
-VERSION=2.0.2
+VERSION=2.0.6
 RELEASE=1
 CATEGORY="Text"
 SUMMARY="XML translation tool"
@@ -8,7 +10,53 @@ using rules from the W3C Internationalization Tag Set (ITS) to determine what
 to translate and how to separate it into PO file messages."
 HOMEPAGE="http://itstool.org/"
 SRC_URI="http://files.itstool.org/itstool/itstool-${VERSION}.tar.bz2"
+PATCH_URI="2.0.6-cygwin-use-python38.patch"
 
 DISTCLEANFILES="itstool itstool.1"
 
 ARCH=noarch
+
+################################
+## Source from a git repository
+################################
+GIT_REPO="https://github.com/itstool/itstool"
+declare -A GIT_DATEHASH_BY_NAME=(
+  # git log --date=iso-strict --format='%cd/%H' -1
+  [2.0.6p2]=2020-12-12T10:40:30-05:00/decbd0e50e824ee0241b36c07c5652b1af47ff20
+  [2.0.6]=2019-04-06T14:55:49-04:00/60f3a955ca047b1d62a1d952beec74afaff7cbbf
+)
+
+REV_HASH="${GIT_DATEHASH_BY_NAME[${VERSION}]#*/}"
+REV_DATE="${GIT_DATEHASH_BY_NAME[${VERSION}]%/*}"
+REV_DATE_SHORT="${GIT_DATEHASH_BY_NAME[${VERSION}]%T*}"
+GIT_BASENAME="${GIT_REPO##*/}"
+SRC_URI="${GIT_REPO}/archive/${REV_HASH}.tar.gz"   # GitHub
+#SRC_URI="${GIT_REPO}/-/archive/${REV_HASH}/${GIT_BASENAME}-${REV_HASH}.tar.bz2" # GitLab
+SRC_DIR="${GIT_BASENAME}-${REV_HASH}"
+
+################################
+## Requirements for building
+################################
+BUILD_REQUIRES="\
+  gawk\
+  libiconv-devel\
+  liblzma-devel\
+  libreadline-devel\
+  libxml2-devel\
+  zlib-devel\
+  python3-devel\
+  python36-devel\
+  python36-libxml2\
+  python38-devel\
+  python38-libxml2\
+"
+
+################################
+## Test
+################################
+src_test() {
+  cd ${S}
+  python3.8 ./tests/run_tests.py
+}
+
+################################

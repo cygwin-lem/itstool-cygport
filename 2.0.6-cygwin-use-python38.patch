@@ -1,0 +1,12 @@
+diff -ur origsrc/itstool-2.0.6/configure.ac src/itstool-2.0.6/configure.ac
+--- origsrc/itstool-2.0.6/configure.ac
++++ src/itstool-2.0.6/configure.ac
+@@ -10,7 +10,7 @@
+ )`
+ AC_SUBST([DATADIR])
+ 
+-AM_PATH_PYTHON([2.6])
++AM_PATH_PYTHON([3.8])
+ 
+ py_module=libxml2
+ AC_MSG_CHECKING(for python module $py_module)
