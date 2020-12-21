@@ -1,24 +1,22 @@
-inherit python3
+export PYTHON=/usr/bin/python3.8
 
 NAME="itstool"
 VERSION=2.0.6
-RELEASE=1
+RELEASE=2
 CATEGORY="Text"
 SUMMARY="XML translation tool"
 DESCRIPTION="ITS Tool allows you to translate your XML documents with PO files,
 using rules from the W3C Internationalization Tag Set (ITS) to determine what
 to translate and how to separate it into PO file messages."
 HOMEPAGE="http://itstool.org/"
-SRC_URI="http://files.itstool.org/itstool/itstool-${VERSION}.tar.bz2"
-PATCH_URI="2.0.6-cygwin-use-python38.patch"
 
-DISTCLEANFILES="itstool itstool.1"
-
+################################
 ARCH=noarch
 
 ################################
 ## Source from a git repository
 ################################
+# SRC_URI="http://files.itstool.org/itstool/itstool-${VERSION}.tar.bz2"
 GIT_REPO="https://github.com/itstool/itstool"
 declare -A GIT_DATEHASH_BY_NAME=(
   # git log --date=iso-strict --format='%cd/%H' -1
@@ -35,28 +33,28 @@ SRC_URI="${GIT_REPO}/archive/${REV_HASH}.tar.gz"   # GitHub
 SRC_DIR="${GIT_BASENAME}-${REV_HASH}"
 
 ################################
+## Patches
+################################
+PATCH_URI="
+  2.0.6-use-same-python-executable-in-tests.patch
+"
+
+################################
 ## Requirements for building
 ################################
 BUILD_REQUIRES="\
-  gawk\
-  libiconv-devel\
-  liblzma-devel\
-  libreadline-devel\
-  libxml2-devel\
-  zlib-devel\
-  python3-devel\
-  python36-devel\
-  python36-libxml2\
-  python38-devel\
   python38-libxml2\
 "
+
+################################
+DISTCLEANFILES="itstool itstool.1"
 
 ################################
 ## Test
 ################################
 src_test() {
   cd ${S}
-  python3.8 ./tests/run_tests.py
+  ${PYTHON} ./tests/run_tests.py
 }
 
 ################################

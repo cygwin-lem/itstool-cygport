@@ -1,0 +1,19 @@
+--- origsrc/itstool-60f3a955ca047b1d62a1d952beec74afaff7cbbf/tests/run_tests.py
++++ src/itstool-60f3a955ca047b1d62a1d952beec74afaff7cbbf/tests/run_tests.py
+@@ -6,10 +6,12 @@ import unittest
+ 
+ TEST_DIR    = os.path.dirname(os.path.abspath(__file__))
+ ITSTOOL_DIR = os.path.dirname(TEST_DIR)
+-if sys.version_info[0] == 3:
+-    PYTHON = 'python3'
+-else:
+-    PYTHON = 'python2'
++PYTHON      = sys.executable
++if not PYTHON:
++    if sys.version_info[0] == 3:
++        PYTHON = 'python3'
++    else:
++        PYTHON = 'python2'
+ 
+ class ItstoolTests(unittest.TestCase):
+     def tearDown(self):
