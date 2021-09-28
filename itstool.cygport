@@ -43,6 +43,7 @@ PATCH_URI="
 ## Requirements for building
 ################################
 BUILD_REQUIRES="\
+  gettext-devel\
   python38-libxml2\
 "
 
