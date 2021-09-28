@@ -1,0 +1,7 @@
+category: Text
+requires: python38 python38-libxml2 
+sdesc: "XML translation tool"
+ldesc: "ITS Tool allows you to translate your XML documents with PO files,
+using rules from the W3C Internationalization Tag Set (ITS) to determine what
+to translate and how to separate it into PO file messages."
+
