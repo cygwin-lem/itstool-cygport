@@ -39,6 +39,8 @@ SRC_DIR="${GIT_BASENAME}-${REV_HASH#v}"
 ################################
 PATCH_URI="
   2.0.6-use-same-python-executable-in-tests.patch
+  https://sources.debian.org/data/main/i/itstool/2.0.5-2/debian/patches/fix_crash_912099.patch
+  https://github.com/itstool/itstool/commit/32c7d07664dc37765100285d1202d488cd6a27e8.patch
 "
 
 ################################
