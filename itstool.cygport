@@ -1,8 +1,8 @@
-export PYTHON=/usr/bin/python3.8
+export PYTHON=/usr/bin/python3.9
 
 NAME="itstool"
 VERSION=2.0.7
-RELEASE=1
+RELEASE=2
 CATEGORY="Text"
 SUMMARY="XML translation tool"
 DESCRIPTION="ITS Tool allows you to translate your XML documents with PO files,
@@ -48,7 +48,7 @@ PATCH_URI="
 ################################
 BUILD_REQUIRES="\
   gettext-devel\
-  python38-libxml2\
+  python39-libxml2\
 "
 
 ################################
